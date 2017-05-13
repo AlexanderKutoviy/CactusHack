@@ -90,4 +90,6 @@ dependencies {
     //okhhtp
     compile 'com.squareup.okhttp3:okhttp:3.6.0'
     compile group: 'com.squareup.okhttp3', name: 'logging-interceptor', version: '3.6.0'
+//custom fonts
+    compile 'com.febaisi:custom-textview:0.0.3'
 }
