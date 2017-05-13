@@ -8,6 +8,7 @@ import com.anykeyapp.di.modules.ControllerModule;
 import com.anykeyapp.di.modules.DaoModule;
 import com.anykeyapp.di.modules.PresenterModule;
 import com.anykeyapp.di.modules.UtilsModule;
+import com.anykeyapp.presenter.AddItemPresenter;
 import com.anykeyapp.presenter.FeedPresenter;
 
 import javax.inject.Singleton;
@@ -30,7 +31,9 @@ public interface AppComponent {
     //CONTROLLER
 
     //PRESENTER
-    FeedPresenter gedFeedPresenter();
+    FeedPresenter getFeedPresenter();
+
+    AddItemPresenter getAddItemPresenter();
 
     //UTIL
 }
