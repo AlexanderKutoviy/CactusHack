@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,14 +76,14 @@ public class MainActivity extends FragmentActivity implements Dispatcher {
     @Override
     public void onBackPressed() {
         Flow flow = Flow.get(this);
-        Log.e(TAG, "onBackPressed");
-        Log.e(TAG, "history size : " + flow.getHistory().size());
-        if (flow.getHistory().iterator().next() instanceof FeedScreen) {
-            Log.e(TAG, "A");
+        if (flow.getHistory().size() == 1) {
             super.onBackPressed();
         } else {
-            Log.e(TAG, "B");
-            flow.replaceTop(flow.getHistory().iterator().next(), Direction.FORWARD);
+            if (flow.getHistory().iterator().next() instanceof FeedScreen) {
+                super.onBackPressed();
+            } else {
+                flow.replaceTop(new FeedScreen(), Direction.FORWARD);
+            }
         }
     }
 
@@ -106,6 +105,6 @@ public class MainActivity extends FragmentActivity implements Dispatcher {
     @dagger.Component(dependencies = AppComponent.class)
     @ApplicationScope
     interface Component {
-        void inject(MainActivity view);
+        void inject(MainActivity activity);
     }
 }

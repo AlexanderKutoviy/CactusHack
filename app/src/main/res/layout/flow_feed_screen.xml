@@ -7,12 +7,13 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:text="FEED" />
 
     <Button
         android:id="@+id/add_item_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/textView"
         android:text="GOTO ADD ITEM" />
 </com.anykeyapp.view.FeedView>
