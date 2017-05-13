@@ -28,11 +28,33 @@
             android:layout_height="match_parent"
             android:layout_below="@+id/head_part">
 
-            <Button
+            <RelativeLayout
+                android:id="@+id/recycler_layout"
+                android:layout_width="70dp"
+                android:layout_height="match_parent">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/categories_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/add_form"
+                android:layout_toRightOf="@+id/recycler_layout"
+                android:layout_toEndOf="@+id/recycler_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+            <!--<Button
                 android:id="@+id/read_date_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="read date" />
+                android:text="read date" />-->
 
         </RelativeLayout>
 
