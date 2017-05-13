@@ -4,14 +4,14 @@ import com.annimon.stream.Stream;
 import com.anykeyapp.R;
 import com.anykeyapp.view.screen.AddItemScreen;
 import com.anykeyapp.view.screen.FeedScreen;
-import com.anykeyapp.view.screen.ToByScreen;
+import com.anykeyapp.view.screen.ToBuyScreen;
 
 import java.util.Arrays;
 
 public enum ViewType {
 
     FEED(FeedScreen.class, R.layout.flow_feed_screen),
-    TO_BY(ToByScreen.class, R.layout.flow_toby_screen),
+    TO_BY(ToBuyScreen.class, R.layout.flow_toby_screen),
     ADD_ITEM(AddItemScreen.class, R.layout.add_item_screen);
 
     public final int viewLayoutId;

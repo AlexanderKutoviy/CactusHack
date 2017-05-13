@@ -13,25 +13,25 @@ import com.anykeyapp.router.Router;
 import com.anykeyapp.router.RouterOwner;
 import com.anykeyapp.view.drawer.DrawerView;
 
-public class ToByView extends DrawerLayout implements RouterOwner {
+public class ToBuyView extends DrawerLayout implements RouterOwner {
 
     private Router router;
     private Context context;
 
-    public ToByView(Context context) {
+    public ToBuyView(Context context) {
         super(context);
-        DaggerToByView_Component.builder()
+        DaggerToBuyView_Component.builder()
                 .appComponent(BinApplication.getAppComponent())
                 .build().inject(this);
         this.context = context;
     }
 
-    public ToByView(Context context, AttributeSet attrs) {
+    public ToBuyView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
     }
 
-    public ToByView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ToBuyView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.context = context;
     }
@@ -61,6 +61,6 @@ public class ToByView extends DrawerLayout implements RouterOwner {
     @dagger.Component(dependencies = AppComponent.class)
     @ApplicationScope
     interface Component {
-        void inject(ToByView view);
+        void inject(ToBuyView view);
     }
 }

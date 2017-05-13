@@ -13,5 +13,5 @@
     <string name="ocr_failure">No text captured</string>
     <string name="ocr_error">"Error reading text: %1$s"</string>
     <string name="drawer_feed_option">Feed</string>
-    <string name="drawer_to_by_option">To by list</string>
+    <string name="drawer_to_buy_option">To buy list</string>
 </resources>

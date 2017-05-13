@@ -14,7 +14,7 @@ import com.anykeyapp.R;
 import com.anykeyapp.router.Router;
 import com.anykeyapp.view.Screen;
 import com.anykeyapp.view.screen.FeedScreen;
-import com.anykeyapp.view.screen.ToByScreen;
+import com.anykeyapp.view.screen.ToBuyScreen;
 
 import java.util.Arrays;
 import java.util.List;
@@ -75,7 +75,7 @@ public class DrawerView extends ListView {
     }
 
     private enum DrawerOption {
-        TO_BY(R.string.drawer_to_by_option, DrawerView.createScreenHandler(new ToByScreen())),
+        TO_BUY(R.string.drawer_to_buy_option, DrawerView.createScreenHandler(new ToBuyScreen())),
         FEED(R.string.drawer_feed_option, DrawerView.createScreenHandler(new FeedScreen()));
 
         private int itemStringId;
