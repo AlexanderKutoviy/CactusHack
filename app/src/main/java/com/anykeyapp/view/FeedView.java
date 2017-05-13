@@ -2,19 +2,22 @@ package com.anykeyapp.view;
 
 import android.content.Context;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.widget.RelativeLayout;
 
 import com.anykeyapp.BinApplication;
 import com.anykeyapp.R;
-import com.anykeyapp.activity.OcrCaptureActivity;
 import com.anykeyapp.di.AppComponent;
 import com.anykeyapp.di.scopes.ApplicationScope;
 import com.anykeyapp.presenter.FeedPresenter;
 import com.anykeyapp.router.Router;
 import com.anykeyapp.router.RouterOwner;
+import com.anykeyapp.view.adapters.ProductsRecyclerAdapter;
 import com.anykeyapp.view.drawer.DrawerView;
+import com.anykeyapp.view.screen.AddItemScreen;
 
 import javax.inject.Inject;
 
@@ -26,7 +29,10 @@ public class FeedView extends DrawerLayout implements RouterOwner {
     @Inject
     FeedPresenter feedPresenter;
 
-    RelativeLayout addItemBtn;
+    private RelativeLayout addItemBtn;
+    private LinearLayoutManager linearLayoutManager;
+    private RecyclerView requestRecycler;
+    private ProductsRecyclerAdapter adapter;
 
     public FeedView(Context context) {
         super(context);
@@ -62,9 +68,7 @@ public class FeedView extends DrawerLayout implements RouterOwner {
         findViewById(R.id.menu_item).setOnClickListener(v -> drawer.drawerLayout.openDrawer(Gravity.LEFT));
 
         addItemBtn = (RelativeLayout) findViewById(R.id.add_item_btn);
-        addItemBtn.setOnClickListener(btn -> {
-            OcrCaptureActivity.start(context);
-        });
+        addItemBtn.setOnClickListener(btn -> router.goTo(new AddItemScreen()));
     }
 
     @Override

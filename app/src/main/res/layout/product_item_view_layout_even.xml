@@ -19,12 +19,12 @@
         android:id="@+id/product_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/add_icon"
+        android:layout_alignTop="@+id/product_icon"
         android:layout_marginLeft="@dimen/add_text_margin_left"
         android:layout_marginStart="@dimen/add_text_margin_left"
         android:layout_marginTop="10dp"
-        android:layout_toEndOf="@+id/add_icon"
-        android:layout_toRightOf="@+id/add_icon"
+        android:layout_toEndOf="@+id/product_icon"
+        android:layout_toRightOf="@+id/product_icon"
         android:text="product title"
         android:textSize="20sp"
         app:typeface="Caviar Dreams Bold.ttf" />
@@ -36,7 +36,7 @@
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/product_title"
         android:layout_marginTop="15dp"
-        android:layout_toRightOf="@+id/add_icon"
+        android:layout_toRightOf="@+id/product_icon"
         android:orientation="horizontal">
 
         <ImageView
