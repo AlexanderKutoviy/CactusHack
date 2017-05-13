@@ -9,4 +9,5 @@
     <color name="drawer_selected_background">#D16E6E</color>
     <color name="drawer_unselected_background">#E9E9E9</color>
     <color name="main_background">#F1E7DA</color>
+    <color name="main_background_lighter">#ffffff</color>
 </resources>

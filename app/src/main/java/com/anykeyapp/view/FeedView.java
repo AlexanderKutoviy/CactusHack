@@ -4,7 +4,7 @@ import android.content.Context;
 import android.support.v4.widget.DrawerLayout;
 import android.util.AttributeSet;
 import android.view.Gravity;
-import android.widget.Button;
+import android.widget.RelativeLayout;
 
 import com.anykeyapp.BinApplication;
 import com.anykeyapp.R;
@@ -26,7 +26,7 @@ public class FeedView extends DrawerLayout implements RouterOwner {
     @Inject
     FeedPresenter feedPresenter;
 
-    Button addItemBtn;
+    RelativeLayout addItemBtn;
 
     public FeedView(Context context) {
         super(context);
@@ -61,7 +61,7 @@ public class FeedView extends DrawerLayout implements RouterOwner {
         DrawerView drawer = (DrawerView) findViewById(R.id.left_drawer);
         findViewById(R.id.menu_item).setOnClickListener(v -> drawer.drawerLayout.openDrawer(Gravity.LEFT));
 
-        addItemBtn = (Button) findViewById(R.id.add_item_btn);
+        addItemBtn = (RelativeLayout) findViewById(R.id.add_item_btn);
         addItemBtn.setOnClickListener(btn -> {
             OcrCaptureActivity.start(context);
         });

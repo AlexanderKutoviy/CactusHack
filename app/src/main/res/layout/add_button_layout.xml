@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:background="@drawable/ripple"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/add_icon"
+        android:layout_width="@dimen/add_icon_size"
+        android:layout_height="@dimen/add_icon_size"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/feed_icon_base_darker"
+        android:src="@drawable/ic_add_white_24dp" />
+
+    <com.febaisi.CustomTextView
+        android:id="@+id/search_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/add_text_margin_left"
+        android:layout_marginStart="@dimen/add_text_margin_left"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/add_icon"
+        android:layout_toRightOf="@+id/add_icon"
+        android:layout_alignTop="@+id/add_icon"
+        android:text="@string/add_item_text"
+        android:textSize="20sp"
+        app:typeface="Caviar Dreams Bold.ttf" />
+</RelativeLayout>

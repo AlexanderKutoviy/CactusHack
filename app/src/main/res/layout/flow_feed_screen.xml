@@ -11,22 +11,17 @@
         android:layout_height="wrap_content">
 
         <include
+            android:id="@+id/add_item_btn"
+            layout="@layout/add_button_layout"
+            android:layout_width="match_parent"
+            android:layout_height="150dp" />
+        
+        <include
             android:id="@+id/header_layout"
             layout="@layout/header_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/header_layout">
-
-            <Button
-                android:id="@+id/add_item_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="add" />
-        </RelativeLayout>
     </RelativeLayout>
 
     <com.anykeyapp.view.drawer.DrawerView
