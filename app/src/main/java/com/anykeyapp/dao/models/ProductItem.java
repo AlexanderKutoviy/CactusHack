@@ -20,6 +20,8 @@ public class ProductItem extends BaseModel {
     @Column
     public String description;
     @Column
+    public String avatarPath;
+    @Column
     public long expirationDate;
     @Column
     public boolean freshStatus;

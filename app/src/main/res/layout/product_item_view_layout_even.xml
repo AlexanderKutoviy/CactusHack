@@ -45,34 +45,39 @@
             android:layout_height="@dimen/status_image_size"
             android:layout_weight="1"
             android:padding="0dp"
-            android:src="@drawable/counter_unchecked" />
+            android:src="@drawable/counter_unchecked"
+            android:tag="1" />
 
         <ImageView
             android:id="@+id/status2"
             android:layout_width="@dimen/status_image_size"
             android:layout_height="@dimen/status_image_size"
             android:layout_weight="1"
-            android:src="@drawable/counter_unchecked" />
+            android:src="@drawable/counter_unchecked"
+            android:tag="2" />
 
         <ImageView
             android:id="@+id/status3"
             android:layout_width="@dimen/status_image_size"
             android:layout_height="@dimen/status_image_size"
             android:layout_weight="1"
-            android:src="@drawable/counter_unchecked" />
+            android:src="@drawable/counter_unchecked"
+            android:tag="3" />
 
         <ImageView
             android:id="@+id/status4"
             android:layout_width="@dimen/status_image_size"
             android:layout_height="@dimen/status_image_size"
             android:layout_weight="1"
-            android:src="@drawable/counter_unchecked" />
+            android:src="@drawable/counter_unchecked"
+            android:tag="4" />
 
         <ImageView
             android:id="@+id/status5"
             android:layout_width="@dimen/status_image_size"
             android:layout_height="@dimen/status_image_size"
             android:layout_weight="1"
-            android:src="@drawable/counter_unchecked" />
+            android:src="@drawable/counter_unchecked"
+            android:tag="5" />
     </LinearLayout>
 </RelativeLayout>
