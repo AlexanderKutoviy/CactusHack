@@ -12,6 +12,7 @@ import android.widget.ImageView;
 
 import com.anykeyapp.BinApplication;
 import com.anykeyapp.R;
+import com.anykeyapp.dao.models.ProductItem;
 import com.anykeyapp.di.AppComponent;
 import com.anykeyapp.di.scopes.ApplicationScope;
 import com.anykeyapp.presenter.AddItemPresenter;
@@ -58,6 +59,7 @@ public class AddItemView extends DrawerLayout implements RouterOwner {
         super.onAttachedToWindow();
         presenter.attachView(this);
         initViews();
+        presenter.setData();
     }
 
     @Override
@@ -93,6 +95,10 @@ public class AddItemView extends DrawerLayout implements RouterOwner {
 
     public void viewExpDate(Date time) {
         expDateNameEdit.setText(new SimpleDateFormat("dd:MM:yyyy").format(time));
+    }
+
+    public void displayData(ProductItem productItem) {
+
     }
 
     @dagger.Component(dependencies = AppComponent.class)
