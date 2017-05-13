@@ -41,23 +41,81 @@
 
             <RelativeLayout
                 android:id="@+id/add_form"
-                android:layout_toRightOf="@+id/recycler_layout"
-                android:layout_toEndOf="@+id/recycler_layout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <TextView
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/recycler_layout"
+                android:layout_toRightOf="@+id/recycler_layout">
+
+                <com.febaisi.CustomTextView
+                    android:id="@+id/entry_name_title"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="@string/entry_name_text"
+                    android:textColor="@color/basic_red"
+                    android:textSize="14sp"
+                    app:typeface="Caviar Dreams Bold.ttf" />
+
+                <EditText
+                    android:id="@+id/entry_name_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/entry_name_title"
+                    android:textColor="@color/basic_red" />
+
+                <com.febaisi.CustomTextView
+                    android:id="@+id/exp_date_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/entry_name_edit_text"
+                    android:text="@string/exp_date_title"
+                    android:textColor="@color/basic_red"
+                    android:textSize="14sp"
+                    app:typeface="Caviar Dreams Bold.ttf" />
+
+                <EditText
+                    android:id="@+id/exp_date_title_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/exp_date_title"
+                    android:layout_toLeftOf="@+id/scan_button"
+                    android:textColor="@color/basic_red" />
+
+                <ImageView
+                    android:id="@+id/scan_button"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/exp_date_title"
+                    android:background="@drawable/scan_button" />
             </RelativeLayout>
 
-            <!--<Button
-                android:id="@+id/read_date_btn"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/calendar_layout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="read date" />-->
+                android:layout_below="@+id/add_form"
+                android:layout_toEndOf="@+id/recycler_layout"
+                android:layout_toRightOf="@+id/recycler_layout">
 
+                <CalendarView
+                    android:id="@+id/calendar_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/save_btn" />
+
+                <ImageView
+                    android:id="@+id/save_btn"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/save_btn" />
+            </RelativeLayout>
         </RelativeLayout>
-
     </RelativeLayout>
 
     <com.anykeyapp.view.drawer.DrawerView

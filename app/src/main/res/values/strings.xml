@@ -16,4 +16,6 @@
     <string name="drawer_to_buy_option">To buy list</string>
     <string name="add_item_text">Add entry</string>
     <string name="no_items_info">No products yet...</string>
+    <string name="entry_name_text">Entry name</string>
+    <string name="exp_date_title">exp. date</string>
 </resources>
