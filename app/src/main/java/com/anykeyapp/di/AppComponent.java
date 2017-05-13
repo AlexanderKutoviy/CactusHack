@@ -3,6 +3,8 @@ package com.anykeyapp.di;
 import android.content.Context;
 import android.content.res.Resources;
 
+import com.anykeyapp.dao.CategoryDao;
+import com.anykeyapp.dao.ProductDao;
 import com.anykeyapp.di.modules.ApplicationModule;
 import com.anykeyapp.di.modules.ControllerModule;
 import com.anykeyapp.di.modules.DaoModule;
@@ -27,7 +29,10 @@ public interface AppComponent {
     Resources getResources();
 
     //DAO
+    CategoryDao getCategoryDao();
 
+    ProductDao getProductDao();
+    
     //CONTROLLER
 
     //PRESENTER
