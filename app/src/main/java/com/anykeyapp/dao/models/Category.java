@@ -11,7 +11,7 @@ import com.raizlabs.android.dbflow.structure.BaseModel;
 public class Category extends BaseModel {
 
     @Column
-    @PrimaryKey
+    @PrimaryKey(autoincrement = true)
     public Long id;
     @Column
     public String name;
@@ -21,6 +21,12 @@ public class Category extends BaseModel {
     public boolean expirable;
 
     public Category() {
+    }
+
+    public Category(String name) {
+        this.name = name;
+        this.avatarUrl = name;
+        this.expirable = true;
     }
 
     @Override

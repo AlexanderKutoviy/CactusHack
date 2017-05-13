@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 
 import com.anykeyapp.BinApplication;
 import com.anykeyapp.R;
+import com.anykeyapp.dao.CategoryDao;
+import com.anykeyapp.dao.models.Category;
 import com.anykeyapp.di.AppComponent;
 import com.anykeyapp.di.scopes.ApplicationScope;
 import com.anykeyapp.router.Router;
@@ -17,6 +19,8 @@ import com.anykeyapp.router.RouterOwner;
 import com.anykeyapp.view.Screen;
 import com.anykeyapp.view.ViewType;
 import com.anykeyapp.view.screen.FeedScreen;
+
+import javax.inject.Inject;
 
 import flow.Direction;
 import flow.Dispatcher;
@@ -32,6 +36,9 @@ public class MainActivity extends FragmentActivity implements Dispatcher {
     private View currentView;
     private Router flowRouter = new FlowRouter();
 
+    @Inject
+    CategoryDao categoryDao;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +46,10 @@ public class MainActivity extends FragmentActivity implements Dispatcher {
         DaggerMainActivity_Component.builder()
                 .appComponent(BinApplication.getAppComponent())
                 .build().inject(this);
+
+        categoryDao.create(new Category("Milk"));
+        categoryDao.create(new Category("Chicken"));
+        categoryDao.create(new Category("Steak"));
     }
 
     @Override
@@ -107,4 +118,5 @@ public class MainActivity extends FragmentActivity implements Dispatcher {
     interface Component {
         void inject(MainActivity activity);
     }
+
 }
