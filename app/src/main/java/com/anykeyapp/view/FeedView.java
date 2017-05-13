@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import com.anykeyapp.BinApplication;
 import com.anykeyapp.R;
+import com.anykeyapp.activity.OcrCaptureActivity;
 import com.anykeyapp.di.AppComponent;
 import com.anykeyapp.di.scopes.ApplicationScope;
 import com.anykeyapp.presenter.FeedPresenter;
@@ -59,6 +60,11 @@ public class FeedView extends DrawerLayout implements RouterOwner {
     private void initViews() {
         DrawerView drawer = (DrawerView) findViewById(R.id.left_drawer);
         findViewById(R.id.menu_item).setOnClickListener(v -> drawer.drawerLayout.openDrawer(Gravity.LEFT));
+
+        addItemBtn = (Button) findViewById(R.id.add_item_btn);
+        addItemBtn.setOnClickListener(btn -> {
+            OcrCaptureActivity.start(context);
+        });
     }
 
     @Override
