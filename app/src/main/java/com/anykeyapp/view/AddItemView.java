@@ -8,7 +8,6 @@ import android.widget.RelativeLayout;
 
 import com.anykeyapp.BinApplication;
 import com.anykeyapp.R;
-import com.anykeyapp.activity.OcrCaptureActivity;
 import com.anykeyapp.di.AppComponent;
 import com.anykeyapp.di.scopes.ApplicationScope;
 import com.anykeyapp.presenter.AddItemPresenter;
@@ -61,8 +60,8 @@ public class AddItemView extends RelativeLayout implements RouterOwner {
         DrawerView drawer = (DrawerView) findViewById(R.id.left_drawer);
         findViewById(R.id.menu_item).setOnClickListener(v -> drawer.drawerLayout.openDrawer(Gravity.LEFT));
 
-        readDateBtn = (Button) findViewById(R.id.read_date_btn);
-        readDateBtn.setOnClickListener(btn -> OcrCaptureActivity.start(context));
+//        readDateBtn = (Button) findViewById(R.id.read_date_btn);
+//        readDateBtn.setOnClickListener(btn -> OcrCaptureActivity.start(context));
     }
 
     @Override
