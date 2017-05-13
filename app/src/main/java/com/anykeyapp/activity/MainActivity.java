@@ -3,12 +3,16 @@ package com.anykeyapp.activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.anykeyapp.BinApplication;
 import com.anykeyapp.R;
+import com.anykeyapp.di.AppComponent;
+import com.anykeyapp.di.scopes.ApplicationScope;
 import com.anykeyapp.router.Router;
 import com.anykeyapp.router.RouterOwner;
 import com.anykeyapp.view.Screen;
@@ -22,7 +26,9 @@ import flow.History;
 import flow.Traversal;
 import flow.TraversalCallback;
 
-public class MainActivity extends AppCompatActivity implements Dispatcher {
+public class MainActivity extends FragmentActivity implements Dispatcher {
+
+    private final String TAG = MainActivity.class.getSimpleName();
 
     private View currentView;
     private Router flowRouter = new FlowRouter();
@@ -31,6 +37,9 @@ public class MainActivity extends AppCompatActivity implements Dispatcher {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        DaggerMainActivity_Component.builder()
+                .appComponent(BinApplication.getAppComponent())
+                .build().inject(this);
     }
 
     @Override
@@ -65,6 +74,20 @@ public class MainActivity extends AppCompatActivity implements Dispatcher {
         currentView = incomingView;
     }
 
+    @Override
+    public void onBackPressed() {
+        Flow flow = Flow.get(this);
+        Log.e(TAG, "onBackPressed");
+        Log.e(TAG, "history size : " + flow.getHistory().size());
+        if (flow.getHistory().iterator().next() instanceof FeedScreen) {
+            Log.e(TAG, "A");
+            super.onBackPressed();
+        } else {
+            Log.e(TAG, "B");
+            flow.replaceTop(flow.getHistory().iterator().next(), Direction.FORWARD);
+        }
+    }
+
     private class FlowRouter implements Router {
 
         @Override
@@ -78,5 +101,11 @@ public class MainActivity extends AppCompatActivity implements Dispatcher {
         public void exitPlanner() {
             MainActivity.this.finish();
         }
+    }
+
+    @dagger.Component(dependencies = AppComponent.class)
+    @ApplicationScope
+    interface Component {
+        void inject(MainActivity view);
     }
 }
