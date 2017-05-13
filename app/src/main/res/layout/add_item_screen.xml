@@ -1,11 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.anykeyapp.view.AddItemView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/main_background"
     android:orientation="vertical">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="add item view" />
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/head_part"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include
+                android:id="@+id/header_layout"
+                layout="@layout/header_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/body"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/head_part">
+
+            <Button
+                android:id="@+id/read_date_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="read date" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <com.anykeyapp.view.drawer.DrawerView
+        android:id="@+id/left_drawer"
+        android:layout_width="@dimen/drawer_list_width"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:background="@color/white"
+        android:choiceMode="singleChoice"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0dp" />
 </com.anykeyapp.view.AddItemView>
