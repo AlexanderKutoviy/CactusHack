@@ -1,6 +1,7 @@
 package com.anykeyapp.view.adapters;
 
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,7 +14,11 @@ import com.anykeyapp.R;
 import com.anykeyapp.dao.models.ProductItem;
 import com.febaisi.CustomTextView;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class ProductsRecyclerAdapter extends RecyclerView.Adapter<ProductsRecyclerAdapter.ProductViewHolder> {
 
@@ -68,7 +73,44 @@ public class ProductsRecyclerAdapter extends RecyclerView.Adapter<ProductsRecycl
             return;
         }
         ProductItem productItem = data.get(position);
+        holder.productTitle.setText(productItem.name);
+        holder.productIcon.setImageBitmap(BitmapFactory.decodeFile(productItem.avatarPath, new BitmapFactory.Options()));
 
+        long days = countDaysToExptire(productItem.expirationDate);
+
+        if (days <= 5) {
+            for (Map.Entry<Integer, ImageView> entry : holder.statues.entrySet()) {
+                if (entry.getKey() < days) {
+                    entry.getValue()
+                            .setImageBitmap(BitmapFactory.decodeResource(context.getResources(),
+                                    R.drawable.counter_unchecked));
+                }
+                if (entry.getKey() == days) {
+                    entry.getValue()
+                            .setImageBitmap(BitmapFactory.decodeResource(context.getResources(),
+                                    R.drawable.fish_counter));
+                }
+                if (entry.getKey() > days) {
+                    entry.getValue()
+                            .setImageBitmap(BitmapFactory.decodeResource(context.getResources(),
+                                    R.drawable.counter_checked));
+                }
+            }
+        } else {
+            for (Map.Entry<Integer, ImageView> entry : holder.statues.entrySet()) {
+                entry.getValue()
+                        .setImageBitmap(BitmapFactory.decodeResource(context.getResources(),
+                                R.drawable.counter_unchecked));
+            }
+        }
+
+    }
+
+    private long countDaysToExptire(long expirationTimestamp) {
+        Date dateNow = new Date();
+        Date expirationDate = new Date(expirationTimestamp);
+        long diff = expirationDate.getTime() - dateNow.getTime();
+        return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
     }
 
     @Override
@@ -87,22 +129,18 @@ public class ProductsRecyclerAdapter extends RecyclerView.Adapter<ProductsRecycl
         ImageView productIcon;
         CustomTextView productTitle;
         LinearLayout statusLayout;
-        ImageView status1;
-        ImageView status2;
-        ImageView status3;
-        ImageView status4;
-        ImageView status5;
+        Map<Integer, ImageView> statues = new HashMap<>(5);
 
         public ProductViewHolder(View view) {
             super(view);
             productIcon = (ImageView) view.findViewById(R.id.product_icon);
             productTitle = (CustomTextView) view.findViewById(R.id.product_title);
             statusLayout = (LinearLayout) view.findViewById(R.id.status_layout);
-            status1 = (ImageView) view.findViewById(R.id.status1);
-            status2 = (ImageView) view.findViewById(R.id.status2);
-            status3 = (ImageView) view.findViewById(R.id.status3);
-            status4 = (ImageView) view.findViewById(R.id.status4);
-            status5 = (ImageView) view.findViewById(R.id.status5);
+            statues.put(1, (ImageView) view.findViewById(R.id.status1));
+            statues.put(2, (ImageView) view.findViewById(R.id.status2));
+            statues.put(3, (ImageView) view.findViewById(R.id.status3));
+            statues.put(4, (ImageView) view.findViewById(R.id.status4));
+            statues.put(5, (ImageView) view.findViewById(R.id.status5));
         }
     }
 }

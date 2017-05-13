@@ -11,7 +11,7 @@ import java.util.Arrays;
 public enum ViewType {
 
     FEED(FeedScreen.class, R.layout.flow_feed_screen),
-    TO_BY(ToBuyScreen.class, R.layout.flow_toby_screen),
+    TO_BY(ToBuyScreen.class, R.layout.flow_tobuy_screen),
     ADD_ITEM(AddItemScreen.class, R.layout.add_item_screen);
 
     public final int viewLayoutId;
