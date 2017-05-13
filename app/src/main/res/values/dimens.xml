@@ -2,9 +2,9 @@
 <resources>
     <dimen name="drawer_padding_side">16dp</dimen>
     <dimen name="drawer_text_size">16sp</dimen>
-    <dimen name="header_menu_icon_width_height">26dp</dimen>
+    <dimen name="header_menu_icon_width_height">50dp</dimen>
     <dimen name="header_menu_icon_top_margin">8dp</dimen>
-    <dimen name="header_layout_height">50dp</dimen>
+    <dimen name="header_layout_height">70dp</dimen>
     <dimen name="drawer_list_width">240dp</dimen>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
