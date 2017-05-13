@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#F1E7DA</color>
+    <color name="colorPrimaryDark">#aca398</color>
     <color name="colorAccent">#FF4081</color>
     <color name="white">#ffffff</color>
     <color name="drawer_unchecked_item_color">#3C3C3C</color>
     <color name="drawer_checked_item_color">#ffffff</color>
     <color name="drawer_selected_background">#D16E6E</color>
     <color name="drawer_unselected_background">#E9E9E9</color>
+    <color name="main_background">#F1E7DA</color>
 </resources>
