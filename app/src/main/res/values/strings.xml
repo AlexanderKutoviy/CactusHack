@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AnyKeyApp</string>
+    <string name="drawer_feed_option">Feed</string>
+    <string name="drawer_to_by_option">To by list</string>
 </resources>

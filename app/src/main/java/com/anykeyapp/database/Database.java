@@ -11,7 +11,7 @@ public class Database {
 
     public static final String TAG = Database.class.getSimpleName();
     public static final String NAME = "bin";
-    public static final int VERSION = 0;
+    public static final int VERSION = 1;
 
     public static void dropTable(DatabaseWrapper db, Class cls) {
         ModelAdapter myAdapter = FlowManager.getModelAdapter(cls);

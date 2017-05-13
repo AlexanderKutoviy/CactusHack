@@ -3,16 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.anykeyapp">
 
+    <uses-sdk tools:overrideLibrary="com.febaisi" />
+
     <application
         android:name=".BinApplication"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:replace="android:allowBackup"
-        android:largeHeap="true">
-        <activity android:name=".activity.MainActivity">
+        tools:replace="android:allowBackup">
+        <activity
+            android:name=".activity.MainActivity"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="stateHidden|adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
