@@ -17,6 +17,12 @@ idea {
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     defaultConfig {
         applicationId "com.anykeyapp"
         minSdkVersion 19
