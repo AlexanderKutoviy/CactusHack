@@ -97,7 +97,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         gestureDetector = new GestureDetector(this, new CaptureGestureListener());
         scaleGestureDetector = new ScaleGestureDetector(this, new ScaleListener());
 
-        Snackbar.make(mGraphicOverlay, "Tap to Speak. Pinch/Stretch to zoom",
+        Snackbar.make(mGraphicOverlay, "Pinch/Stretch to zoom",
                 Snackbar.LENGTH_LONG)
                 .show();
 
@@ -165,7 +165,9 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         // TODO: Create the mCameraSource using the TextRecognizer.
 
         TextRecognizer textRecognizer = new TextRecognizer.Builder(context).build();
-        textRecognizer.setProcessor(new OcrDetectorProcessor(mGraphicOverlay));
+        OcrDetectorProcessor processor = new OcrDetectorProcessor(mGraphicOverlay);
+        processor.setActivity(this);
+        textRecognizer.setProcessor(processor);
 
         if (!textRecognizer.isOperational()) {
 
