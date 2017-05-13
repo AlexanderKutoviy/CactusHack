@@ -36,11 +36,20 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
             TextBlock item = items.valueAt(i);
             if (item != null && item.getValue() != null) {
                 Log.d("Processor", "Text detected! " + item.getValue());
-                Matcher match = regex.matcher(item.getValue());
-                if (match.find()) {
-                    Log.d("Processor", "Regexp was found! " + match);
-                    activity.finish();
-                } else continue;
+                String strForParsing = item.getValue();
+                String[] str = strForParsing.split(" ");
+                for (int j = 0; j < str.length; j++) {
+                    Matcher match = regex.matcher(str[j]);
+                    if (match.find()) {
+                        Log.e("PROCESSOR", str[j]);
+                        activity.finish();
+                    }
+                }
+//                Matcher match = regex.matcher(item.getValue());
+//                if (match.find()) {
+//                    Log.e("Processor", "Regexp was found! " + match);
+//                    activity.finish();
+//                } else continue;
             }
             Log.d("Processor", "Date was not found... Trying to check again.");
 
