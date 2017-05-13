@@ -11,7 +11,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
-import android.os.Build;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
@@ -25,20 +24,15 @@ import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.widget.Toast;
 
+import com.anykeyapp.R;
+import com.anykeyapp.activity.google_vision.camera.CameraSource;
+import com.anykeyapp.activity.google_vision.camera.CameraSourcePreview;
+import com.anykeyapp.activity.google_vision.camera.GraphicOverlay;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.common.api.CommonStatusCodes;
-import com.google.android.gms.samples.vision.ocrreader.ui.camera.CameraSource;
-import com.google.android.gms.samples.vision.ocrreader.ui.camera.CameraSourcePreview;
-import com.google.android.gms.samples.vision.ocrreader.ui.camera.GraphicOverlay;
-import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
 
-import com.anykeyapp.activity.google_vision.camera.*;
-import com.anykeyapp.activity.google_vision.camera.GraphicOverlay.Graphic;
-
 import java.io.IOException;
-import java.util.Locale;
 
 /**
  * Activity for the Ocr Detecting app.  This app detects text and displays the value with the

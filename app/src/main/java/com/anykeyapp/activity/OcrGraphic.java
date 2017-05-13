@@ -5,11 +5,9 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
-import com.google.android.gms.samples.vision.ocrreader.ui.camera.GraphicOverlay;
+import com.anykeyapp.activity.google_vision.camera.GraphicOverlay;
 import com.google.android.gms.vision.text.Text;
 import com.google.android.gms.vision.text.TextBlock;
-
-import com.anykeyapp.activity.google_vision.camera.*;
 
 import java.util.List;
 
