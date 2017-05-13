@@ -1,4 +1,18 @@
 apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'com.neenbedankt.android-apt'
+//apply plugin: 'com.google.gms.google-services'
+apply plugin: 'idea'
+
+idea {
+    module {
+        // if you hate browsing Javadoc
+        downloadJavadoc = true
+
+        // and love reading sources :)
+        downloadSources = true
+    }
+}
 
 android {
     compileSdkVersion 25
@@ -8,7 +22,8 @@ android {
         minSdkVersion 19
         targetSdkVersion 25
         versionCode 1
-        versionName "1.0"
+        versionName "1.0" + versionCode
+        setProperty("archivesBaseName", "anykey-$versionName")
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -17,6 +32,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+
+    buildToolsVersion '25.0.2'
 }
 
 dependencies {
@@ -27,4 +50,37 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
+    //support
+    compile 'com.android.support:support-v13:25.3.1'
+    compile 'com.android.support:design:25.3.1'
+    compile 'com.android.support:support-v4:25.3.1'
+    compile 'com.android.support:recyclerview-v7:25.3.1'
+    compile 'com.android.support:cardview-v7:25.3.1'
+    testCompile 'junit:junit:4.12'
+    //gson
+    compile 'com.google.code.gson:gson:2.7'
+    //rxjava
+    compile 'io.reactivex.rxjava2:rxjava:2.0.6'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    // java 8 stream backport & optionals
+    compile 'com.annimon:stream:1.0.8'
+    // db flow
+    apt "com.github.Raizlabs.DBFlow:dbflow-processor:3.1.1"
+    compile "com.github.Raizlabs.DBFlow:dbflow-core:3.1.1"
+    compile "com.github.Raizlabs.DBFlow:dbflow:3.1.1"
+    //material dialog
+    compile 'com.afollestad.material-dialogs:core:0.9.1.0'
+    compile 'com.afollestad.material-dialogs:commons:0.9.1.0'
+    //picasso
+    compile 'com.squareup.picasso:picasso:2.4.0'
+    testCompile 'junit:junit:4.12'
+    //dagger 2
+    apt 'com.google.dagger:dagger-compiler:2.8'
+    compile 'com.google.dagger:dagger:2.8'
+    provided 'javax.annotation:jsr250-api:1.0'
+    // flow
+    compile 'com.squareup.flow:flow:1.0.0-alpha'
+    //okhhtp
+    compile 'com.squareup.okhttp3:okhttp:3.6.0'
+    compile group: 'com.squareup.okhttp3', name: 'logging-interceptor', version: '3.6.0'
 }
