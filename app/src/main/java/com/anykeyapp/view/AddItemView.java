@@ -1,10 +1,14 @@
 package com.anykeyapp.view;
 
 import android.content.Context;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.Gravity;
-import android.widget.Button;
-import android.widget.RelativeLayout;
+import android.widget.CalendarView;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.anykeyapp.BinApplication;
 import com.anykeyapp.R;
@@ -13,11 +17,16 @@ import com.anykeyapp.di.scopes.ApplicationScope;
 import com.anykeyapp.presenter.AddItemPresenter;
 import com.anykeyapp.router.Router;
 import com.anykeyapp.router.RouterOwner;
+import com.anykeyapp.view.adapters.CategoriesRecyclerAdapter;
 import com.anykeyapp.view.drawer.DrawerView;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.inject.Inject;
 
-public class AddItemView extends RelativeLayout implements RouterOwner {
+public class AddItemView extends DrawerLayout implements RouterOwner {
 
     private Router router;
     private Context context;
@@ -25,34 +34,35 @@ public class AddItemView extends RelativeLayout implements RouterOwner {
     @Inject
     AddItemPresenter presenter;
 
-    Button readDateBtn;
+    private LinearLayoutManager linearLayoutManager;
+    private RecyclerView requestRecycler;
+    private CategoriesRecyclerAdapter adapter;
 
-    public AddItemView(Context context) {
-        super(context);
-        DaggerAddItemView_Component.builder()
-                .appComponent(BinApplication.getAppComponent())
-                .build().inject(this);
-        this.context = context;
-    }
+    private EditText entryNameEdit;
+    private EditText expDateNameEdit;
+    private ImageView scanButton;
+    private ImageView saveButton;
+    private CalendarView calendarView;
+    private Calendar calendar;
 
     public AddItemView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
-    }
-
-    public AddItemView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        this.context = context;
+        DaggerAddItemView_Component.builder()
+                .appComponent(BinApplication.getAppComponent())
+                .build().inject(this);
     }
 
     @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
+        presenter.attachView(this);
         initViews();
     }
 
     @Override
     public void onDetachedFromWindow() {
+        presenter.detachView();
         super.onDetachedFromWindow();
     }
 
@@ -60,13 +70,29 @@ public class AddItemView extends RelativeLayout implements RouterOwner {
         DrawerView drawer = (DrawerView) findViewById(R.id.left_drawer);
         findViewById(R.id.menu_item).setOnClickListener(v -> drawer.drawerLayout.openDrawer(Gravity.LEFT));
 
-//        readDateBtn = (Button) findViewById(R.id.read_date_btn);
-//        readDateBtn.setOnClickListener(btn -> OcrCaptureActivity.start(context));
+        requestRecycler = (RecyclerView) findViewById(R.id.categories_recycler);
+        entryNameEdit = (EditText) findViewById(R.id.entry_name_edit_text);
+        expDateNameEdit = (EditText) findViewById(R.id.exp_date_title_edit_text);
+        scanButton = (ImageView) findViewById(R.id.scan_button);
+        saveButton = (ImageView) findViewById(R.id.save_btn);
+        calendarView = (CalendarView) findViewById(R.id.calendar_view);
+        calendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            calendar.set(Calendar.MONTH, month);
+            calendar.set(Calendar.YEAR, year);
+            presenter.onCalendarClicked(calendar);
+        });
     }
 
     @Override
     public void injectRouter(Router router) {
         this.router = router;
+        ((DrawerView) findViewById(R.id.left_drawer)).init(this, router);
+    }
+
+    public void viewExpDate(Date time) {
+        expDateNameEdit.setText(new SimpleDateFormat("dd:MM:yyyy").format(time));
     }
 
     @dagger.Component(dependencies = AppComponent.class)

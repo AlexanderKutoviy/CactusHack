@@ -2,6 +2,8 @@ package com.anykeyapp.di.modules;
 
 import android.content.Context;
 
+import com.anykeyapp.dao.CategoryDao;
+import com.anykeyapp.dao.ProductDao;
 import com.anykeyapp.presenter.AddItemPresenter;
 import com.anykeyapp.presenter.FeedPresenter;
 
@@ -15,13 +17,13 @@ public class PresenterModule {
 
     @Singleton
     @Provides
-    FeedPresenter provideFeedPresenter(Context context) {
-        return new FeedPresenter(context);
+    FeedPresenter provideFeedPresenter(Context context, CategoryDao categoryDao, ProductDao productDao) {
+        return new FeedPresenter(context, categoryDao, productDao);
     }
 
     @Singleton
     @Provides
-    AddItemPresenter provideAddItemPresenter(Context context) {
-        return new AddItemPresenter(context);
+    AddItemPresenter provideAddItemPresenter(Context context, CategoryDao categoryDao, ProductDao productDao) {
+        return new AddItemPresenter(context, categoryDao, productDao);
     }
 }

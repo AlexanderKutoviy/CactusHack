@@ -16,8 +16,8 @@ import com.anykeyapp.presenter.FeedPresenter;
 import com.anykeyapp.router.Router;
 import com.anykeyapp.router.RouterOwner;
 import com.anykeyapp.view.adapters.ProductsRecyclerAdapter;
-import com.anykeyapp.view.drawer.DrawerView;
 import com.anykeyapp.view.screen.AddItemScreen;
+import com.anykeyapp.view.drawer.DrawerView;
 
 import javax.inject.Inject;
 
@@ -34,21 +34,11 @@ public class FeedView extends DrawerLayout implements RouterOwner {
     private RecyclerView requestRecycler;
     private ProductsRecyclerAdapter adapter;
 
-    public FeedView(Context context) {
-        super(context);
+    public FeedView(Context context, AttributeSet attrs) {
+        super(context, attrs);
         DaggerFeedView_Component.builder()
                 .appComponent(BinApplication.getAppComponent())
                 .build().inject(this);
-        this.context = context;
-    }
-
-    public FeedView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        this.context = context;
-    }
-
-    public FeedView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
         this.context = context;
     }
 

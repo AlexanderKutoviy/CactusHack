@@ -41,8 +41,6 @@ public class DrawerView extends ListView {
     public void init(DrawerLayout drawerLayout, Router router/*, LogoutPresenter logoutPresenter*/) {
         this.router = router;
         this.drawerLayout = drawerLayout;
-//        this.logoutPresenter = logoutPresenter;
-//        this.prefsHelper = new PrefsHelper(getContext());
         initDrawerItems();
     }
 
@@ -51,13 +49,6 @@ public class DrawerView extends ListView {
                 .map(DrawerOption::getItemStringId)
                 .map(getResources()::getString)
                 .collect(Collectors.toList());
-
-//        if (!prefsHelper.hasDebugRole()) {
-//            String DEBUG = "Debug";
-//            itemNames.remove(DEBUG);
-//            String USAGE = "Usage";
-//            itemNames.remove(USAGE);
-//        }
 
         ArrayAdapter<String> drawerAdapter =
                 new ArrayAdapter<>(getContext(), R.layout.drawer_list_item, itemNames);
