@@ -38,6 +38,7 @@ public class FeedPresenter {
 
     public void setData() {
         List<ProductItem> productItems = productDao.read();
+        productDao.sort(productItems);
         if (productItems != null) {
             feedView.displayData(productItems);
         } else {

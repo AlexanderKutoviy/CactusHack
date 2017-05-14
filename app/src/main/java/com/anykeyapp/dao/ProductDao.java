@@ -2,6 +2,8 @@ package com.anykeyapp.dao;
 
 import android.util.Log;
 
+import com.annimon.stream.Collectors;
+import com.annimon.stream.Stream;
 import com.anykeyapp.dao.models.ProductItem;
 import com.anykeyapp.dao.models.ProductItem_Table;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
@@ -38,5 +40,12 @@ public class ProductDao {
                 .where(ProductItem_Table.freshStatus.eq(false))
                 .or(ProductItem_Table.liveStatus.eq(false))
                 .queryList();
+    }
+
+    public void sort(List<ProductItem> productItems) {
+        Stream.of(productItems)
+                .sorted((p1, p2) -> {
+                    return (int)(p1.expirationDate - p2.expirationDate);
+                }).collect(Collectors.toList());
     }
 }
