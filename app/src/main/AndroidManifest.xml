@@ -6,6 +6,9 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-feature android:name="android.hardware.camera" />
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <uses-sdk tools:overrideLibrary="com.febaisi" />
 
     <application
@@ -38,6 +41,11 @@
         <activity
             android:name="com.anykeyapp.activity.OcrCaptureActivity"
             android:label="Read Text"></activity>
+        <receiver android:name=".LocationReceiver">
+            <intent-filter>
+                <action android:name="my.action"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

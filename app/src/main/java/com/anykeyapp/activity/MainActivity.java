@@ -3,7 +3,7 @@ package com.anykeyapp.activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +22,7 @@ import com.anykeyapp.view.screen.FeedScreen;
 
 import javax.inject.Inject;
 
+import br.com.safety.locationlistenerhelper.core.LocationTracker;
 import flow.Direction;
 import flow.Dispatcher;
 import flow.Flow;
@@ -29,12 +30,14 @@ import flow.History;
 import flow.Traversal;
 import flow.TraversalCallback;
 
-public class MainActivity extends FragmentActivity implements Dispatcher {
+public class MainActivity extends AppCompatActivity implements Dispatcher {
 
     private final String TAG = MainActivity.class.getSimpleName();
 
     private View currentView;
     private Router flowRouter = new FlowRouter();
+
+    private LocationTracker locationTracker;
 
     @Inject
     CategoryDao categoryDao;
@@ -52,6 +55,22 @@ public class MainActivity extends FragmentActivity implements Dispatcher {
 //        categoryDao.create(new Category("Milk"));
 //        categoryDao.create(new Category("Chicken"));
 //        categoryDao.create(new Category("Steak"));
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        new LocationTracker("my.action")
+                .setInterval(50000)
+                .setGps(true)
+                .setNetWork(false)
+                .start(getBaseContext(), this);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        locationTracker.onRequestPermission(requestCode, permissions, grantResults);
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     @Override
