@@ -12,6 +12,7 @@ import android.widget.ImageView;
 
 import com.anykeyapp.BinApplication;
 import com.anykeyapp.R;
+import com.anykeyapp.dao.models.Category;
 import com.anykeyapp.dao.models.ProductItem;
 import com.anykeyapp.di.AppComponent;
 import com.anykeyapp.di.scopes.ApplicationScope;
@@ -24,6 +25,7 @@ import com.anykeyapp.view.drawer.DrawerView;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -76,7 +78,13 @@ public class AddItemView extends DrawerLayout implements RouterOwner {
         entryNameEdit = (EditText) findViewById(R.id.entry_name_edit_text);
         expDateNameEdit = (EditText) findViewById(R.id.exp_date_title_edit_text);
         scanButton = (ImageView) findViewById(R.id.scan_button);
+        scanButton.setOnClickListener(btn -> presenter.scanBtnClicked());
         saveButton = (ImageView) findViewById(R.id.save_btn);
+        saveButton.setOnClickListener(btn -> {
+            if (entryNameEdit.getText() != null && expDateNameEdit.getText() != null)
+                presenter.saveProduct(entryNameEdit.getText().toString(),
+                        expDateNameEdit.getText().toString());
+        });
         calendarView = (CalendarView) findViewById(R.id.calendar_view);
         calendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
             Calendar calendar = Calendar.getInstance();
@@ -98,7 +106,15 @@ public class AddItemView extends DrawerLayout implements RouterOwner {
     }
 
     public void displayData(ProductItem productItem) {
+        entryNameEdit.setText(productItem.name);
+        expDateNameEdit.setText(new SimpleDateFormat("dd:MM:yyyy")
+                .format(new Date(productItem.expirationDate)));
+    }
 
+    public void displayCategories(List<Category> categories) {
+        adapter = new CategoriesRecyclerAdapter(context, categories, presenter);
+        requestRecycler.setAdapter(adapter);
+        requestRecycler.setLayoutManager(new LinearLayoutManager(context));
     }
 
     @dagger.Component(dependencies = AppComponent.class)

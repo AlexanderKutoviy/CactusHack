@@ -1,5 +1,7 @@
 package com.anykeyapp.dao;
 
+import android.util.Log;
+
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 import com.anykeyapp.dao.models.ProductItem;
@@ -9,7 +11,10 @@ import java.util.List;
 
 public class ProductDao {
 
+    private final String TAG = ProductDao.class.getSimpleName();
+
     public void create(ProductItem product) {
+        Log.e(TAG, product.toString());
         product.save();
     }
 

@@ -2,13 +2,20 @@ package com.anykeyapp.presenter;
 
 import android.content.Context;
 
+import com.anykeyapp.activity.OcrCaptureActivity;
 import com.anykeyapp.dao.CategoryDao;
 import com.anykeyapp.dao.ProductDao;
+import com.anykeyapp.dao.models.Category;
 import com.anykeyapp.dao.models.ProductItem;
 import com.anykeyapp.router.Router;
 import com.anykeyapp.view.AddItemView;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 public class AddItemPresenter {
 
@@ -48,19 +55,29 @@ public class AddItemPresenter {
         productItem.id = id;
     }
 
-    public void nameEntered(String name) {
+    public void saveProduct(String name, String date) {
+        DateFormat format = new SimpleDateFormat("dd:MM:yyyy");
+        try {
+            Date dDate = format.parse(date);
+            productItem.expirationDate = dDate.getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         productItem.name = name;
-    }
-
-    public void saveProduct() {
         productDao.create(productItem);
     }
 
     public void setData() {
+        List<Category> categories = categoryDao.read();
+        addItemView.displayCategories(categories);
         if (productItem != null) {
             addItemView.displayData(productItem);
         } else {
             return;
         }
+    }
+
+    public void scanBtnClicked() {
+        OcrCaptureActivity.start(context);
     }
 }
