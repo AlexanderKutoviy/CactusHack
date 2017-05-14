@@ -109,6 +109,10 @@ public class AddItemView extends DrawerLayout implements RouterOwner {
         expDateNameEdit.setText(new SimpleDateFormat("dd:MM:yyyy").format(time));
     }
 
+    public void viewExpDate(String time) {
+        expDateNameEdit.setText(time);
+    }
+
     public void displayData(ProductItem productItem) {
         entryNameEdit.setText(productItem.name);
         if (productItem.categoryId != null) {
@@ -135,14 +139,21 @@ public class AddItemView extends DrawerLayout implements RouterOwner {
         return entryNameEdit.getText().toString();
     }
 
-    public Long getDate() {
+    public long getDate() {
         DateFormat format = new SimpleDateFormat("dd:MM:yyyy");
         try {
             Date dDate = format.parse(expDateNameEdit.getText().toString());
             return dDate.getTime();
         } catch (ParseException e) {
             e.printStackTrace();
-            return null;
+            DateFormat format2 = new SimpleDateFormat("dd.MM.yyyy");
+            try {
+                Date dDate = format2.parse(expDateNameEdit.getText().toString());
+                return dDate.getTime();
+            } catch (ParseException e2) {
+                e2.printStackTrace();
+                return 0;
+            }
         }
     }
 

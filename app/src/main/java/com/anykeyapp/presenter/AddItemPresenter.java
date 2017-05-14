@@ -8,10 +8,14 @@ import com.anykeyapp.dao.ProductDao;
 import com.anykeyapp.dao.models.Category;
 import com.anykeyapp.dao.models.ProductItem;
 import com.anykeyapp.router.Router;
+import com.anykeyapp.util.BitSchedulers;
 import com.anykeyapp.view.AddItemView;
+import com.anykeyapp.view.screen.FeedScreen;
 
 import java.util.Calendar;
 import java.util.List;
+
+import rx.subscriptions.CompositeSubscription;
 
 public class AddItemPresenter {
 
@@ -27,6 +31,8 @@ public class AddItemPresenter {
     private ProductItem productItem;
     private ProductItem savedState = new ProductItem();
 
+    private CompositeSubscription subscription;
+
     public AddItemPresenter(Context context, CategoryDao categoryDao, ProductDao productDao) {
         this.context = context;
         this.categoryDao = categoryDao;
@@ -36,12 +42,18 @@ public class AddItemPresenter {
     public void attachView(AddItemView addItemView) {
         this.addItemView = addItemView;
         productItem = new ProductItem();
+        subscription = new CompositeSubscription();
+        subscription.add(OcrCaptureActivity.dateObservable
+                .subscribeOn(BitSchedulers.io())
+                .observeOn(BitSchedulers.main())
+                .subscribe(this::dateScanned));
     }
 
     public void detachView() {
         addItemView = null;
         productItem = null;
         router = null;
+        subscription.unsubscribe();
     }
 
     public void setData() {
@@ -57,6 +69,10 @@ public class AddItemPresenter {
         addItemView.viewExpDate(calendar.getTime());
         productItem.expirationDate = calendar.getTimeInMillis();
         savedState.expirationDate = calendar.getTimeInMillis();
+    }
+
+    public void dateScanned(String date) {
+        addItemView.viewExpDate(date);
     }
 
     public void categoryClicked(long id, String name) {
@@ -79,6 +95,7 @@ public class AddItemPresenter {
             return;
         }
         productDao.create(productItem);
+        router.goTo(new FeedScreen());
     }
 
     public void saveState() {
