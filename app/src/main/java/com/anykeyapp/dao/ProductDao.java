@@ -42,8 +42,8 @@ public class ProductDao {
                 .queryList();
     }
 
-    public void sort(List<ProductItem> productItems) {
-        Stream.of(productItems)
+    public List<ProductItem> sort(List<ProductItem> productItems) {
+        return Stream.of(productItems)
                 .sorted((p1, p2) -> {
                     return (int)(p1.expirationDate - p2.expirationDate);
                 }).collect(Collectors.toList());
