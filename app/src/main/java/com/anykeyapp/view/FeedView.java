@@ -10,14 +10,15 @@ import android.widget.RelativeLayout;
 
 import com.anykeyapp.BinApplication;
 import com.anykeyapp.R;
+import com.anykeyapp.dao.models.ProductItem;
 import com.anykeyapp.di.AppComponent;
 import com.anykeyapp.di.scopes.ApplicationScope;
 import com.anykeyapp.presenter.FeedPresenter;
 import com.anykeyapp.router.Router;
 import com.anykeyapp.router.RouterOwner;
 import com.anykeyapp.view.adapters.ProductsRecyclerAdapter;
-import com.anykeyapp.view.screen.AddItemScreen;
 import com.anykeyapp.view.drawer.DrawerView;
+import com.anykeyapp.view.screen.AddItemScreen;
 
 import javax.inject.Inject;
 
@@ -45,11 +46,14 @@ public class FeedView extends DrawerLayout implements RouterOwner {
     @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
+        feedPresenter.attachView(this);
         initViews();
+        feedPresenter.setData();
     }
 
     @Override
     public void onDetachedFromWindow() {
+        feedPresenter.detachView();
         super.onDetachedFromWindow();
     }
 
@@ -65,6 +69,10 @@ public class FeedView extends DrawerLayout implements RouterOwner {
     public void injectRouter(Router router) {
         this.router = router;
         ((DrawerView) findViewById(R.id.left_drawer)).init(this, router);
+    }
+
+    public void displayData(ProductItem productItem) {
+
     }
 
     @dagger.Component(dependencies = AppComponent.class)
