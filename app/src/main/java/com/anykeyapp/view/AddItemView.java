@@ -61,7 +61,7 @@ public class AddItemView extends DrawerLayout implements RouterOwner {
     @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
-        presenter.attachView(this);
+        presenter.attachView(this, router);
         initViews();
         presenter.setData();
     }

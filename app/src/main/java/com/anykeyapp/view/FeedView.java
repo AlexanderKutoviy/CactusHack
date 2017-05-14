@@ -19,6 +19,9 @@ import com.anykeyapp.router.RouterOwner;
 import com.anykeyapp.view.adapters.ProductsRecyclerAdapter;
 import com.anykeyapp.view.drawer.DrawerView;
 import com.anykeyapp.view.screen.AddItemScreen;
+import com.febaisi.CustomTextView;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -29,11 +32,11 @@ public class FeedView extends DrawerLayout implements RouterOwner {
 
     @Inject
     FeedPresenter feedPresenter;
-
     private RelativeLayout addItemBtn;
     private LinearLayoutManager linearLayoutManager;
-    private RecyclerView requestRecycler;
+    private RecyclerView recycler;
     private ProductsRecyclerAdapter adapter;
+    private CustomTextView noProductsMsg;
 
     public FeedView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -63,6 +66,9 @@ public class FeedView extends DrawerLayout implements RouterOwner {
 
         addItemBtn = (RelativeLayout) findViewById(R.id.add_item_btn);
         addItemBtn.setOnClickListener(btn -> router.goTo(new AddItemScreen()));
+
+        recycler = (RecyclerView) findViewById(R.id.product_recycler);
+        noProductsMsg = (CustomTextView) findViewById(R.id.no_products_msg);
     }
 
     @Override
@@ -71,8 +77,17 @@ public class FeedView extends DrawerLayout implements RouterOwner {
         ((DrawerView) findViewById(R.id.left_drawer)).init(this, router);
     }
 
-    public void displayData(ProductItem productItem) {
-
+    public void displayData(List<ProductItem> productItems) {
+        if (!productItems.isEmpty()) {
+            noProductsMsg.setVisibility(GONE);
+            recycler.setVisibility(VISIBLE);
+            adapter = new ProductsRecyclerAdapter(context, productItems, feedPresenter);
+            recycler.setAdapter(adapter);
+            recycler.setLayoutManager(new LinearLayoutManager(context));
+        } else {
+            noProductsMsg.setVisibility(VISIBLE);
+            recycler.setVisibility(GONE);
+        }
     }
 
     @dagger.Component(dependencies = AppComponent.class)

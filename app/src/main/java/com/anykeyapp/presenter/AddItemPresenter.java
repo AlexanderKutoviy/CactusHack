@@ -39,8 +39,9 @@ public class AddItemPresenter {
         this.productDao = productDao;
     }
 
-    public void attachView(AddItemView addItemView) {
+    public void attachView(AddItemView addItemView, Router router) {
         this.addItemView = addItemView;
+        this.router = router;
         productItem = new ProductItem();
         subscription = new CompositeSubscription();
         subscription.add(OcrCaptureActivity.dateObservable
