@@ -18,4 +18,5 @@
     <string name="no_items_info">No products yet...</string>
     <string name="entry_name_text">Entry name</string>
     <string name="exp_date_title">exp. date</string>
+    <string name="save_text">SAVE</string>
 </resources>

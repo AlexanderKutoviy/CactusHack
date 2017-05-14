@@ -87,7 +87,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_below="@+id/exp_date_title"
-                    android:background="@drawable/scan_button" />
+                    android:background="@drawable/scan_btn_background" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -104,7 +104,7 @@
                     android:layout_height="match_parent"
                     android:layout_above="@+id/save_btn" />
 
-                <ImageView
+                <Button
                     android:id="@+id/save_btn"
                     android:layout_width="100dp"
                     android:layout_height="50dp"
@@ -113,7 +113,9 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginEnd="20dp"
                     android:layout_marginRight="20dp"
-                    android:background="@drawable/save_btn" />
+                    android:background="@drawable/save_btn_background"
+                    android:text="@string/save_text"
+                    android:textColor="@color/white" />
             </RelativeLayout>
         </RelativeLayout>
     </RelativeLayout>

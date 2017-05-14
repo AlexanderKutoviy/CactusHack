@@ -64,6 +64,9 @@ public class AddItemPresenter {
             e.printStackTrace();
         }
         productItem.name = name;
+        if (productItem.categoryId == null || productItem.name == null || productItem.expirationDate == 0) {
+            return;
+        }
         productDao.create(productItem);
     }
 

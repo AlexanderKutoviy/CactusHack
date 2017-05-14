@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.Gravity;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -44,9 +45,8 @@ public class AddItemView extends DrawerLayout implements RouterOwner {
     private EditText entryNameEdit;
     private EditText expDateNameEdit;
     private ImageView scanButton;
-    private ImageView saveButton;
+    private Button saveButton;
     private CalendarView calendarView;
-    private Calendar calendar;
 
     public AddItemView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -79,7 +79,7 @@ public class AddItemView extends DrawerLayout implements RouterOwner {
         expDateNameEdit = (EditText) findViewById(R.id.exp_date_title_edit_text);
         scanButton = (ImageView) findViewById(R.id.scan_button);
         scanButton.setOnClickListener(btn -> presenter.scanBtnClicked());
-        saveButton = (ImageView) findViewById(R.id.save_btn);
+        saveButton = (Button) findViewById(R.id.save_btn);
         saveButton.setOnClickListener(btn -> {
             if (entryNameEdit.getText() != null && expDateNameEdit.getText() != null)
                 presenter.saveProduct(entryNameEdit.getText().toString(),
