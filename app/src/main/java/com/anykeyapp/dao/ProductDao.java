@@ -30,4 +30,11 @@ public class ProductDao {
     public void delete(ProductItem product) {
         product.delete();
     }
+
+    public void sort(List<ProductItem> productItems) {
+        Stream.of(productItems)
+                .sorted((p1, p2) -> {
+                    return (int)(p1.expirationDate - p2.expirationDate);
+                }).collect(Collectors.toList());
+    }
 }
