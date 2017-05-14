@@ -11,6 +11,7 @@
         android:layout_width="@dimen/add_icon_size"
         android:layout_height="@dimen/add_icon_size"
         android:layout_marginLeft="20dp"
+        android:padding="10dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/feed_icon_base_darker" />

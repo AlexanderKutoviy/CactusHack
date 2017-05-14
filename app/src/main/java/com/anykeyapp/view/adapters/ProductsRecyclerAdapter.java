@@ -75,7 +75,24 @@ public class ProductsRecyclerAdapter extends RecyclerView.Adapter<ProductsRecycl
         }
         ProductItem productItem = data.get(position);
         holder.productTitle.setText(productItem.name);
-        holder.productIcon.setImageBitmap(BitmapFactory.decodeFile(productItem.avatarPath, new BitmapFactory.Options()));
+
+        switch (productItem.name) {
+            case "Milk":
+                holder.productIcon.setImageBitmap(
+                        BitmapFactory.decodeResource(context.getResources(),
+                                R.drawable.milk));
+                break;
+            case "Chicken":
+                holder.productIcon.setImageBitmap(
+                        BitmapFactory.decodeResource(context.getResources(),
+                                R.drawable.chicken));
+                break;
+            case "Steak":
+                holder.productIcon.setImageBitmap(
+                        BitmapFactory.decodeResource(context.getResources(),
+                                R.drawable.steak));
+                break;
+        }
 
         long days = countDaysToExptire(productItem.expirationDate);
 
@@ -85,13 +102,11 @@ public class ProductsRecyclerAdapter extends RecyclerView.Adapter<ProductsRecycl
                     entry.getValue()
                             .setImageBitmap(BitmapFactory.decodeResource(context.getResources(),
                                     R.drawable.counter_unchecked));
-                }
-                if (entry.getKey() == days) {
+                } else if (entry.getKey() == days) {
                     entry.getValue()
                             .setImageBitmap(BitmapFactory.decodeResource(context.getResources(),
                                     R.drawable.fish_counter));
-                }
-                if (entry.getKey() > days) {
+                } else if (entry.getKey() > days) {
                     entry.getValue()
                             .setImageBitmap(BitmapFactory.decodeResource(context.getResources(),
                                     R.drawable.counter_checked));
