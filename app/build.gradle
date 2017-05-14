@@ -93,4 +93,22 @@ dependencies {
     compile 'com.febaisi:custom-textview:0.0.3'
     // geolocation library
     compile 'com.github.safetysystemtechnology:location-tracker-background:v1.0'
+    // test frameworks
+    testCompile "org.mockito:mockito-core:2.7.22"
+    testCompile "org.robolectric:robolectric:3.3.2"
+    //espresso
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestCompile 'com.android.support.test.espresso:espresso-contrib:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude module: 'design'
+        exclude module: 'recyclerview-v7'
+        exclude module: 'support-v4'
+    }
+    androidTestCompile 'com.android.support:support-annotations:25.3.1'
+    //uiAutomator
+    androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.2'
+    //hamcrest
+    testCompile 'org.hamcrest:hamcrest-library:1.3'
 }

@@ -12,6 +12,7 @@ import com.anykeyapp.BinApplication;
 import com.anykeyapp.R;
 import com.anykeyapp.controller.ExpirationController;
 import com.anykeyapp.dao.CategoryDao;
+import com.anykeyapp.dao.models.Category;
 import com.anykeyapp.di.AppComponent;
 import com.anykeyapp.di.scopes.ApplicationScope;
 import com.anykeyapp.router.Router;
@@ -52,9 +53,9 @@ public class MainActivity extends AppCompatActivity implements Dispatcher {
                 .appComponent(BinApplication.getAppComponent())
                 .build().inject(this);
 
-//        categoryDao.create(new Category("Milk"));
-//        categoryDao.create(new Category("Chicken"));
-//        categoryDao.create(new Category("Steak"));
+        categoryDao.create(new Category("Milk"));
+        categoryDao.create(new Category("Chicken"));
+        categoryDao.create(new Category("Steak"));
     }
 
     @Override
