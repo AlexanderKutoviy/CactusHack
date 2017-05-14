@@ -6,6 +6,7 @@ import com.anykeyapp.dao.CategoryDao;
 import com.anykeyapp.dao.ProductDao;
 import com.anykeyapp.presenter.AddItemPresenter;
 import com.anykeyapp.presenter.FeedPresenter;
+import com.anykeyapp.presenter.ToBuyPresenter;
 
 import javax.inject.Singleton;
 
@@ -19,6 +20,12 @@ public class PresenterModule {
     @Provides
     FeedPresenter provideFeedPresenter(Context context, CategoryDao categoryDao, ProductDao productDao) {
         return new FeedPresenter(context, categoryDao, productDao);
+    }
+
+    @Singleton
+    @Provides
+    ToBuyPresenter provideToBuyPresenter(Context context, CategoryDao categoryDao, ProductDao productDao) {
+        return new ToBuyPresenter(context, categoryDao, productDao);
     }
 
     @Singleton

@@ -2,9 +2,8 @@ package com.anykeyapp.dao;
 
 import android.util.Log;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
 import com.anykeyapp.dao.models.ProductItem;
+import com.anykeyapp.dao.models.ProductItem_Table;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import java.util.List;
@@ -19,8 +18,7 @@ public class ProductDao {
     }
 
     public List<ProductItem> read() {
-        return Stream.of(SQLite.select().from(ProductItem.class).queryList())
-                .collect(Collectors.toList());
+        return SQLite.select().from(ProductItem.class).queryList();
     }
 
     public void update(ProductItem product) {
@@ -29,5 +27,12 @@ public class ProductDao {
 
     public void delete(ProductItem product) {
         product.delete();
+    }
+
+    public List<ProductItem> getExpiredOrOver() {
+        return SQLite.select().from(ProductItem.class)
+                .where(ProductItem_Table.freshStatus.eq(false))
+                .or(ProductItem_Table.liveStatus.eq(false))
+                .queryList();
     }
 }

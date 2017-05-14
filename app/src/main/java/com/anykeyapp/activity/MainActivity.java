@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.anykeyapp.BinApplication;
 import com.anykeyapp.R;
+import com.anykeyapp.controller.ExpirationController;
 import com.anykeyapp.dao.CategoryDao;
 import com.anykeyapp.di.AppComponent;
 import com.anykeyapp.di.scopes.ApplicationScope;
@@ -37,6 +38,8 @@ public class MainActivity extends FragmentActivity implements Dispatcher {
 
     @Inject
     CategoryDao categoryDao;
+    @Inject
+    ExpirationController expirationController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
