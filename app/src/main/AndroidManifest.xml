@@ -41,7 +41,7 @@
         <activity
             android:name="com.anykeyapp.activity.OcrCaptureActivity"
             android:label="Read Text"></activity>
-        <receiver android:name=".LocationReceiver">
+        <receiver android:name=".controller.LocationReceiver">
             <intent-filter>
                 <action android:name="my.action"/>
             </intent-filter>
