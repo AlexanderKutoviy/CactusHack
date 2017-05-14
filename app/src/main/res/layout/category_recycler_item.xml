@@ -4,7 +4,7 @@
     android:layout_height="70dp"
     android:background="@drawable/feed_icon_base_darker"
     android:orientation="vertical"
-    android:padding="5dp">
+    android:padding="10dp">
 
     <ImageView
         android:id="@+id/category_avatar"

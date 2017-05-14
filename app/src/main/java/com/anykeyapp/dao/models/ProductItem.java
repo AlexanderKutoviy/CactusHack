@@ -31,6 +31,18 @@ public class ProductItem extends BaseModel {
     public ProductItem() {
     }
 
+
+    public ProductItem(ProductItem productItem) {
+        this.id = productItem.id;
+        this.categoryId = productItem.categoryId;
+        this.name = productItem.name;
+        this.description = productItem.description;
+        this.avatarPath = productItem.avatarPath;
+        this.expirationDate = productItem.expirationDate;
+        this.freshStatus = productItem.freshStatus;
+        this.liveStatus = productItem.liveStatus;
+    }
+
     @Override
     public String toString() {
         return "ProductItem{" +

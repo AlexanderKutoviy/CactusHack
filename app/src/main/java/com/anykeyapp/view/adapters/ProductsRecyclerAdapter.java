@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 
 import com.anykeyapp.R;
 import com.anykeyapp.dao.models.ProductItem;
+import com.anykeyapp.presenter.FeedPresenter;
 import com.febaisi.CustomTextView;
 
 import java.util.Date;
@@ -31,7 +32,7 @@ public class ProductsRecyclerAdapter extends RecyclerView.Adapter<ProductsRecycl
 
     private List<ProductItem> data;
 
-    public ProductsRecyclerAdapter(Context context, List<ProductItem> data) {
+    public ProductsRecyclerAdapter(Context context, List<ProductItem> data, FeedPresenter presenter) {
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.data = data;
         this.context = context;

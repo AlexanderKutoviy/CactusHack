@@ -34,6 +34,8 @@ import com.google.android.gms.vision.text.TextRecognizer;
 
 import java.io.IOException;
 
+import rx.subjects.ReplaySubject;
+
 /**
  * Activity for the Ocr Detecting app.  This app detects text and displays the value with the
  * rear facing camera. During detection overlay graphics are drawn to indicate the position,
@@ -63,6 +65,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
 
     // A TextToSpeech engine for speaking a String value.
     private TextToSpeech tts;
+    public static ReplaySubject<String> dateObservable = ReplaySubject.createWithSize(1);
 
     public static void start(Context context) {
         Intent intent = new Intent(context, OcrCaptureActivity.class);

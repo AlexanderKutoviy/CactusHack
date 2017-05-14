@@ -10,6 +10,8 @@ import com.google.android.gms.vision.text.TextBlock;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static com.anykeyapp.activity.OcrCaptureActivity.dateObservable;
+
 /**
  * A very simple Processor which gets detected TextBlocks and adds them to the overlay
  * as OcrGraphics.
@@ -42,6 +44,7 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
                     Matcher match = regex.matcher(str[j]);
                     if (match.find()) {
                         Log.e("PROCESSOR", str[j]);
+                        dateObservable.onNext(str[j]);
                         activity.finish();
                     }
                 }

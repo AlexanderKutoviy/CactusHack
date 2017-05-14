@@ -8,6 +8,8 @@ import com.anykeyapp.dao.models.ProductItem;
 import com.anykeyapp.router.Router;
 import com.anykeyapp.view.FeedView;
 
+import java.util.List;
+
 public class FeedPresenter {
 
     private FeedView feedView;
@@ -35,8 +37,9 @@ public class FeedPresenter {
     }
 
     public void setData() {
-        if (productItem != null) {
-            feedView.displayData(productItem);
+        List<ProductItem> productItems = productDao.read();
+        if (productItems != null) {
+            feedView.displayData(productItems);
         } else {
             return;
         }

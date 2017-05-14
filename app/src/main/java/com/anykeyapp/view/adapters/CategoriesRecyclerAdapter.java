@@ -24,6 +24,7 @@ public class CategoriesRecyclerAdapter extends RecyclerView.Adapter<CategoriesRe
 
     private List<Category> data;
     private AddItemPresenter presenter;
+    private long clickedId;
 
     public CategoriesRecyclerAdapter(Context context, List<Category> data, AddItemPresenter presenter) {
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -54,6 +55,8 @@ public class CategoriesRecyclerAdapter extends RecyclerView.Adapter<CategoriesRe
             return;
         }
         Category category = data.get(position);
+        holder.id = category.id;
+        holder.name = category.name;
         if (category.avatarUrl.equals("Milk")) {
             holder.categoryAvatar.setImageBitmap(
                     BitmapFactory.decodeResource(context.getResources(),
@@ -66,6 +69,12 @@ public class CategoriesRecyclerAdapter extends RecyclerView.Adapter<CategoriesRe
             holder.categoryAvatar.setImageBitmap(
                     BitmapFactory.decodeResource(context.getResources(),
                             R.drawable.steak));
+        }
+
+        if (category.id == clickedId) {
+            holder.view.setBackground(context.getResources().getDrawable(R.drawable.cateegory_icon));
+        } else {
+            holder.view.setBackground(context.getResources().getDrawable(R.drawable.feed_icon_base_darker));
         }
     }
 
@@ -80,15 +89,23 @@ public class CategoriesRecyclerAdapter extends RecyclerView.Adapter<CategoriesRe
         notifyDataSetChanged();
     }
 
+    public void setClickedId(long clickedId) {
+        this.clickedId = clickedId;
+        notifyDataSetChanged();
+    }
+
     class CategoryViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView categoryAvatar;
+        public View view;
+        public ImageView categoryAvatar;
         public long id;
+        public String name;
 
         public CategoryViewHolder(View view) {
             super(view);
+            this.view = view;
             categoryAvatar = (ImageView) view.findViewById(R.id.category_avatar);
-            view.setOnClickListener(v ->presenter.categoryClicked(id));
+            view.setOnClickListener(v -> presenter.categoryClicked(id, name));
         }
     }
 }
