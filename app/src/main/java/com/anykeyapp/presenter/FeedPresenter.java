@@ -44,4 +44,9 @@ public class FeedPresenter {
             return;
         }
     }
+
+    public void deleteItem(long id) {
+        productDao.delete(id);
+        setData();
+    }
 }

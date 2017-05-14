@@ -29,6 +29,10 @@ public class ProductDao {
         product.delete();
     }
 
+    public void delete(long id) {
+        SQLite.delete().from(ProductItem.class).where(ProductItem_Table.id.eq(id)).execute();
+    }
+
     public List<ProductItem> getExpiredOrOver() {
         return SQLite.select().from(ProductItem.class)
                 .where(ProductItem_Table.freshStatus.eq(false))

@@ -10,11 +10,11 @@
         android:id="@+id/product_icon"
         android:layout_width="@dimen/add_icon_size"
         android:layout_height="@dimen/add_icon_size"
-        android:padding="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/feed_icon_base_darker" />
+        android:background="@drawable/feed_icon_base_darker"
+        android:padding="10dp" />
 
     <com.febaisi.CustomTextView
         android:id="@+id/product_title"
@@ -81,4 +81,14 @@
             android:src="@drawable/counter_unchecked"
             android:tag="5" />
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/delete_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="5dp"
+        android:src="@drawable/ic_delete_forever_black_36dp" />
 </RelativeLayout>

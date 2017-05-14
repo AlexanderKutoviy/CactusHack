@@ -152,7 +152,14 @@ public class AddItemView extends DrawerLayout implements RouterOwner {
                 return dDate.getTime();
             } catch (ParseException e2) {
                 e2.printStackTrace();
-                return 0;
+                DateFormat format3 = new SimpleDateFormat("dd/MM/yyyy");
+                try {
+                    Date dDate = format3.parse(expDateNameEdit.getText().toString());
+                    return dDate.getTime();
+                } catch (ParseException e3) {
+                    e3.printStackTrace();
+                    return 0;
+                }
             }
         }
     }

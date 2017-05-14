@@ -101,11 +101,11 @@ public class ExpirationController {
         // Actions are just fake
         Notification noti = new Notification.Builder(context)
                 .setContentTitle("Your " + productItem.name + " has expired")
-                .setContentText("Subject").setSmallIcon(R.mipmap.ic_launcher_round)
+                .setSmallIcon(R.drawable.logo)
                 .setContentIntent(pIntent).build();
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
         // hide the notification after its selected
-        notificationManager.notify(0, noti);
+        notificationManager.notify((int) (long) productItem.id, noti);
     }
 
     public void wakeUp() {

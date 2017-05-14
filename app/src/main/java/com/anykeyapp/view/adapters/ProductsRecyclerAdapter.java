@@ -27,6 +27,7 @@ public class ProductsRecyclerAdapter extends RecyclerView.Adapter<ProductsRecycl
     private final String TAG = ProductsRecyclerAdapter.class.getSimpleName();
     private static final int TYPE_EVEN = 1001;
     private static final int TYPE_ODD = 1002;
+    private FeedPresenter presenter;
 
     private Context context;
     private LayoutInflater inflater;
@@ -37,6 +38,7 @@ public class ProductsRecyclerAdapter extends RecyclerView.Adapter<ProductsRecycl
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.data = data;
         this.context = context;
+        this.presenter = presenter;
         setHasStableIds(true);
     }
 
@@ -83,7 +85,7 @@ public class ProductsRecyclerAdapter extends RecyclerView.Adapter<ProductsRecycl
         }
         ProductItem productItem = data.get(position);
         holder.productTitle.setText(productItem.name);
-
+        holder.id = productItem.id;
         switch (productItem.name) {
             case "Milk":
                 holder.productIcon.setImageBitmap(
@@ -154,6 +156,8 @@ public class ProductsRecyclerAdapter extends RecyclerView.Adapter<ProductsRecycl
         CustomTextView productTitle;
         LinearLayout statusLayout;
         Map<Integer, ImageView> statues = new HashMap<>(5);
+        ImageView deleteBtn;
+        long id;
 
         public ProductViewHolder(View view) {
             super(view);
@@ -165,6 +169,8 @@ public class ProductsRecyclerAdapter extends RecyclerView.Adapter<ProductsRecycl
             statues.put(3, (ImageView) view.findViewById(R.id.status3));
             statues.put(4, (ImageView) view.findViewById(R.id.status4));
             statues.put(5, (ImageView) view.findViewById(R.id.status5));
+            deleteBtn = (ImageView) view.findViewById(R.id.delete_btn);
+            deleteBtn.setOnClickListener(btn -> presenter.deleteItem(id));
         }
     }
 }
