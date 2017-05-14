@@ -23,6 +23,8 @@ import com.anykeyapp.router.RouterOwner;
 import com.anykeyapp.view.adapters.CategoriesRecyclerAdapter;
 import com.anykeyapp.view.drawer.DrawerView;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -77,14 +79,16 @@ public class AddItemView extends DrawerLayout implements RouterOwner {
         requestRecycler = (RecyclerView) findViewById(R.id.categories_recycler);
         entryNameEdit = (EditText) findViewById(R.id.entry_name_edit_text);
         expDateNameEdit = (EditText) findViewById(R.id.exp_date_title_edit_text);
+
         scanButton = (ImageView) findViewById(R.id.scan_button);
         scanButton.setOnClickListener(btn -> presenter.scanBtnClicked());
+
         saveButton = (Button) findViewById(R.id.save_btn);
         saveButton.setOnClickListener(btn -> {
             if (entryNameEdit.getText() != null && expDateNameEdit.getText() != null)
-                presenter.saveProduct(entryNameEdit.getText().toString(),
-                        expDateNameEdit.getText().toString());
+                presenter.saveProduct();
         });
+
         calendarView = (CalendarView) findViewById(R.id.calendar_view);
         calendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
             Calendar calendar = Calendar.getInstance();
@@ -107,14 +111,39 @@ public class AddItemView extends DrawerLayout implements RouterOwner {
 
     public void displayData(ProductItem productItem) {
         entryNameEdit.setText(productItem.name);
-        expDateNameEdit.setText(new SimpleDateFormat("dd:MM:yyyy")
-                .format(new Date(productItem.expirationDate)));
+        if (productItem.categoryId != null) {
+            setClickedId(productItem.categoryId, productItem.name);
+        }
+        if (productItem.expirationDate != 0) {
+            expDateNameEdit.setText(new SimpleDateFormat("dd:MM:yyyy")
+                    .format(new Date(productItem.expirationDate)));
+        }
     }
 
     public void displayCategories(List<Category> categories) {
         adapter = new CategoriesRecyclerAdapter(context, categories, presenter);
         requestRecycler.setAdapter(adapter);
         requestRecycler.setLayoutManager(new LinearLayoutManager(context));
+    }
+
+    public void setClickedId(long clickedId, String name) {
+        adapter.setClickedId(clickedId);
+        entryNameEdit.setText(name);
+    }
+
+    public String getName() {
+        return entryNameEdit.getText().toString();
+    }
+
+    public Long getDate() {
+        DateFormat format = new SimpleDateFormat("dd:MM:yyyy");
+        try {
+            Date dDate = format.parse(expDateNameEdit.getText().toString());
+            return dDate.getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @dagger.Component(dependencies = AppComponent.class)
